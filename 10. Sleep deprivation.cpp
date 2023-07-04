@@ -1,6 +1,6 @@
 /*
 Problem:-
-A person is said to be sleep deprived if he slept strictly less than 7 hours in a day.
+A person is said to be sleep deprived if he slept strictly less than 7 hours in a day. 
 Chef was only able to sleep X hours yesterday. Determine if he is sleep deprived or not.
 */
 
