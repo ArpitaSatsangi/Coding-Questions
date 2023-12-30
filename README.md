@@ -1,2 +1,2 @@
-# CodeChef
-practice problems on CodeChef
+# Coding Questions
+practice problems on CodeChef/Coding Ninja
