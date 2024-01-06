@@ -70,13 +70,31 @@ void insert_any_pos(node *&root, int x, int pos)
 
 }
 
-int delete_any_pos(node *&root, int x, int pos)
+void delete_any_pos(node *&root, int pos)
 {
     if(pos==1)
     {
-        
+        root=root->next;
+        return ;
     }
-    
+
+    node *temp=root;
+    int c=1;
+
+    while(c!=pos-1)
+    {
+        temp=temp->next;
+        c++;
+    }
+
+    if(temp->next->next==NULL)
+    {
+        //last node
+        temp->next=NULL;
+        return ;
+    }
+
+    temp->next=temp->next->next;
 }
 
 void print(node *&root)
@@ -107,16 +125,16 @@ node *middle(node *&root)
 
 int main()
 {
-    node *root=new node(10);
+    node *root=new node(1);
 
     insert_node(root, 2);
-    insert_node(root, 15);
-    insert_node(root, 30);
-    insert_node(root, 45);
-    insert_node(root, 56);
+    insert_node(root, 3);
+    insert_node(root, 4);
+    insert_node(root, 5);
+    insert_node(root, 6);
 
     print(root);
-    insert_any_pos(root, 3,3);
+    insert_any_pos(root, 30,3);
 
     print(root);
     insert_any_pos(root, 0,1);
@@ -130,7 +148,34 @@ int main()
 
     node *m = middle(root);
 
-    cout<<"middle node is "<<m->data<<endl;
+    cout<<"middle node is "<<m->data<<endl<<endl;
+
+
+    delete_any_pos(root, 4);
+    print(root);
+
+    delete_any_pos(root, 1);
+    print(root);
+
+    delete_any_pos(root, 7);
+    print(root);
 
     return 0;
 }
+
+/*
+1  2  3  4  5  6
+
+1  2  30  3  4  5  6
+
+0  1  2  30  3  4  5  6
+
+0  1  2  30  3  4  5  6  100
+
+middle node is 3
+
+0  1  2  3  4  5  6  100
+
+1  2  3  4  5  6  100
+
+1  2  3  4  5  6*/
