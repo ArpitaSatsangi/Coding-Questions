@@ -51,7 +51,7 @@ void insert_any_pos(node *&root, int x, int pos)
     node *temp=root;
     int c=1;
 
-    while(c != pos-1)
+    while(c < pos-1)
     {
         temp=temp->next;
         c++;
@@ -72,29 +72,31 @@ void insert_any_pos(node *&root, int x, int pos)
 
 void delete_any_pos(node *&root, int pos)
 {
+    node *temp=root;
+    node *prev=NULL;
+    int c=1;
+
     if(pos==1)
     {
         root=root->next;
+        temp->next=NULL;
+        delete temp;
+
         return ;
     }
 
-    node *temp=root;
-    int c=1;
-
-    while(c!=pos-1)
+    while(c<pos)
     {
+        prev=temp;
         temp=temp->next;
         c++;
     }
 
-    if(temp->next->next==NULL)
-    {
-        //last node
-        temp->next=NULL;
-        return ;
-    }
 
-    temp->next=temp->next->next;
+    prev->next=temp->next;
+    temp->next=NULL;
+
+    delete temp;
 }
 
 void print(node *&root)
@@ -162,6 +164,7 @@ int main()
 
     return 0;
 }
+
 
 /*
 1  2  3  4  5  6
